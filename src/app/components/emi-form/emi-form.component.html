@@ -1,0 +1,28 @@
+<div class="emi-form-container">
+  <form [formGroup]="emiForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="loanValue">Loan Value:</label>
+      <input id="loanValue" formControlName="loanValue" type="number" placeholder="Enter Loan Value">
+    </div>
+    <div>
+      <label for="yearlyInterestRate">Yearly Interest Rate (%):</label>
+      <input id="yearlyInterestRate" formControlName="yearlyInterestRate" type="number"
+        placeholder="Enter Interest Rate">
+    </div>
+    <div>
+      <label for="loanTerm">Loan Term (years):</label>
+      <input id="loanTerm" formControlName="loanTerm" type="number" placeholder="Enter Loan Term">
+    </div>
+
+    <button type="submit" [disabled]="emiForm.invalid">Calculate EMI</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="emiAmount !== null" class="emi-result">
+    <h3>Calculated EMI:</h3>
+    <h2>{{ emiAmount }}</h2>
+  </div>
+</div>
